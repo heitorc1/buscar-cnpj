@@ -12,12 +12,12 @@ import Card from "../Card";
 const Results: React.FC = () => {
   return (
     <div className={styles.wrapper}>
-      <FontAwesomeIcon icon={faChevronLeft} />
+      <FontAwesomeIcon icon={faChevronLeft} color="white" size="2x" />
       <Card></Card>
       <Card></Card>
       <Card></Card>
       <Card></Card>
-      <FontAwesomeIcon icon={faChevronRight} />
+      <FontAwesomeIcon icon={faChevronRight} color="white" size="2x" />
     </div>
   );
 };

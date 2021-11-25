@@ -1,8 +1,11 @@
 .wrapper {
   background-color: #fff;
 
+  display: flex;
+  flex-direction: column;
+
   width: 100%;
-  height: 40vh;
+  padding-bottom: 5vh;
 
   .title {
     color: #3a8970;

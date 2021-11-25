@@ -1,11 +1,28 @@
 .wrapper {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  justify-content: space-between;
 
   background-color: #fff;
 
-  width: 300px;
+  width: 18vw;
   height: 30vh;
 
+  padding: 15px;
   border-radius: 10px;
+
+  .razaoSocial,
+  .cnpj,
+  .endereco {
+    padding: 10px;
+    .value {
+      font-weight: 700;
+      color: #3a8970;
+    }
+
+    .label {
+      font-weight: 500;
+      color: #6bb99e;
+    }
+  }
 }
