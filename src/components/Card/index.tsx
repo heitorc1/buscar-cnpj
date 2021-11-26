@@ -2,12 +2,18 @@ import Typography from "@mui/material/Typography";
 import React from "react";
 import styles from "./styles.module.scss";
 
-const Card: React.FC = () => {
+type CompanyType = {
+  razao_social: string;
+  cnpj: string;
+  logradouro: string;
+};
+
+const Card: React.FC<CompanyType> = ({ razao_social, cnpj, logradouro }) => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.razaoSocial}>
         <Typography variant="h4" className={styles.value}>
-          Empresa X
+          {razao_social}
         </Typography>
         <Typography variant="h4" className={styles.label}>
           Razão social
@@ -15,7 +21,7 @@ const Card: React.FC = () => {
       </div>
       <div className={styles.cnpj}>
         <Typography variant="h4" className={styles.value}>
-          151458150
+          {cnpj}
         </Typography>
         <Typography variant="h4" className={styles.label}>
           CNPJ
@@ -23,7 +29,7 @@ const Card: React.FC = () => {
       </div>
       <div className={styles.endereco}>
         <Typography variant="h4" className={styles.value}>
-          Endereço
+          {logradouro}
         </Typography>
         <Typography variant="h4" className={styles.label}>
           Endereço
