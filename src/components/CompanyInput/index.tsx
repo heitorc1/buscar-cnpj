@@ -11,10 +11,21 @@ import CompanyContext from "../../context";
 import jsonp from "jsonp";
 import validarCNPJ from "../../services/validarCNPJ";
 
-interface CustomProps {
+type CustomProps = {
   onChange: (event: { target: { name: string; value: string } }) => void;
   name: string;
-}
+};
+
+type CompanyType = {
+  nome: string;
+  uf: string;
+  cnpj: string;
+  bairro: string;
+  logradouro: string;
+  numero: string;
+  cep: string;
+  municipio: string;
+};
 
 const NumberFormatCustom = React.forwardRef<NumberFormat, CustomProps>(
   function NumberFormatCustom(props, ref) {
@@ -47,6 +58,18 @@ const CompanyInput: React.FC = () => {
     setOpen(false);
   };
 
+  const handleLocalStorage = (item: CompanyType) => {
+    let companies = [];
+    if (!localStorage.getItem("company")) {
+      companies.push(item);
+      localStorage.setItem("company", JSON.stringify(companies));
+    } else {
+      companies = JSON.parse(localStorage.getItem("company") || "{}");
+      companies.push(item);
+      localStorage.setItem("company", JSON.stringify(companies));
+    }
+  };
+
   async function handleClick() {
     const validate = validarCNPJ(cnpj);
     if (!validate) {
@@ -60,6 +83,7 @@ const CompanyInput: React.FC = () => {
           console.error(err.message);
         } else {
           setState(data);
+          handleLocalStorage(data);
         }
       });
     }
