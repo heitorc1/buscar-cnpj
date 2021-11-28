@@ -17,12 +17,15 @@
     "@types/node": "^12.0.0",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
+    "axios": "^0.24.0",
     "jsonp": "^0.2.1",
+    "leaflet": "^1.7.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-leaflet": "^3.2.2",
     "react-number-format": "^4.8.0",
+    "react-router-dom": "^6.0.2",
     "react-scripts": "4.0.3",
-    "remove": "^0.1.5",
     "sass": "^1.43.4",
     "typescript": "^4.1.2",
     "web-vitals": "^1.0.1"
@@ -39,19 +42,14 @@
       "react-app/jest"
     ]
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not op_mini all"
+  ],
   "devDependencies": {
-    "@types/jsonp": "^0.2.1"
+    "@types/axios": "^0.14.0",
+    "@types/jsonp": "^0.2.1",
+    "@types/leaflet": "^1.7.6"
   }
 }
