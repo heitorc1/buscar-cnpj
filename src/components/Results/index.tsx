@@ -25,7 +25,7 @@ const Results: React.FC = () => {
   useEffect(() => {
     const storage = JSON.parse(localStorage.getItem("company") || "[]");
     setCompanies(storage.reverse());
-  }, [companies]);
+  }, []);
 
   return (
     <>
