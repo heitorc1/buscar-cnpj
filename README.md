@@ -11,4 +11,4 @@ yarn start
 
 ### O servidor estará rodando em http://localhost:3000
 
-### _Projeto em desenvolvimento_
+### É necessário renomear o arquivo .env.sample para .env e alterar o valor da variável REACT_APP_GOOGLE_API para a sua chave API.

@@ -1,7 +1,9 @@
 import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
+import Loading from "../../components/Loading";
 import MapArea from "../../components/MapArea";
 import MapTextBox from "../../components/MapTextBox";
+import NotFound from "../../components/NotFound";
 import CompanyContext from "../../context";
 import styles from "./styles.module.scss";
 
@@ -43,7 +45,7 @@ const Map: React.FC = () => {
   return (
     <div>
       {!loaded ? (
-        <div>Carregando...</div>
+        <Loading />
       ) : latitude || longitude ? (
         <div className={styles.wrapper}>
           <div className={styles.area}>
@@ -58,7 +60,7 @@ const Map: React.FC = () => {
           </div>
         </div>
       ) : (
-        <div>Local não econtrado</div>
+        <NotFound />
       )}
     </div>
   );

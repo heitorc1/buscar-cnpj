@@ -1,9 +1,3 @@
-.icon {
-  color: #3a8970;
-
-  margin: 10px 10px 25px 10px;
-}
-
 .wrapper {
   display: flex;
   flex-direction: column;
@@ -11,7 +5,7 @@
 
   background-color: #fff;
 
-  width: 18vw;
+  width: 15vw;
   height: 30vh;
 
   border-radius: 10px;
@@ -30,4 +24,14 @@
       color: #6bb99e;
     }
   }
+}
+
+.icon {
+  display: flex;
+  color: #3a8970;
+
+  margin-top: 10px;
+  margin-left: 10px;
+  margin-bottom: 25px;
+  padding: 0;
 }
