@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import styles from "./styles.module.scss";
 
+import { Wrapper, NotFound } from "./Results.styles";
 import Typography from "@mui/material/Typography";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -11,7 +11,7 @@ import {
 
 import image from "../../assets/images/image.png";
 
-import Card from "../Card";
+import { Card } from "components";
 
 type CompanyType = {
   nome: string;
@@ -30,7 +30,7 @@ const Results: React.FC = () => {
   return (
     <>
       {companies.length > 0 ? (
-        <div className={styles.wrapper}>
+        <Wrapper>
           <FontAwesomeIcon icon={faChevronLeft} color="white" size="2x" />
           {companies.map((company: CompanyType, index: number) => {
             if (index < 4) {
@@ -47,17 +47,17 @@ const Results: React.FC = () => {
             }
           })}
           <FontAwesomeIcon icon={faChevronRight} color="white" size="2x" />
-        </div>
+        </Wrapper>
       ) : (
-        <div className={styles.notFound}>
+        <NotFound>
           <img src={image} alt="Sem histórico" />
           <Typography variant="h3">
             Localize acima a primeira empresa
           </Typography>
-        </div>
+        </NotFound>
       )}
     </>
   );
 };
 
-export default Results;
+export { Results };

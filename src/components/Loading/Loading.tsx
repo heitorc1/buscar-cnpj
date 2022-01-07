@@ -1,13 +1,13 @@
 import React from "react";
-import styles from "./styles.module.scss";
+import { Wrapper } from "./Loading.styles";
 import CircularProgress from "@mui/material/CircularProgress";
 
 const Loading: React.FC = () => {
   return (
-    <div className={styles.wrapper}>
+    <Wrapper>
       <CircularProgress color="secondary" size="10rem" />
-    </div>
+    </Wrapper>
   );
 };
 
-export default Loading;
+export { Loading };

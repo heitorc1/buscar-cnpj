@@ -1,4 +1,6 @@
-.wrapper {
+import styled from "styled-components";
+
+const Wrapper = styled.div`
   width: 100%;
   padding-top: 12vh;
   box-sizing: border-box;
@@ -9,9 +11,9 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-around;
-}
+`;
 
-.notFound {
+const NotFound = styled.div`
   width: 100%;
   padding-top: 12vh;
 
@@ -23,4 +25,6 @@
   h3 {
     color: #fff;
   }
-}
+`;
+
+export { Wrapper, NotFound };

@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import styles from "./styles.module.scss";
+import { Wrapper } from "./CompanyInput.styles";
 import NumberFormat from "react-number-format";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
@@ -90,7 +90,7 @@ const CompanyInput: React.FC = () => {
   }
 
   return (
-    <div className={styles.wrapper}>
+    <Wrapper>
       <Snackbar
         open={open}
         autoHideDuration={6000}
@@ -129,8 +129,8 @@ const CompanyInput: React.FC = () => {
       >
         Localizar
       </Button>
-    </div>
+    </Wrapper>
   );
 };
 
-export default CompanyInput;
+export { CompanyInput };

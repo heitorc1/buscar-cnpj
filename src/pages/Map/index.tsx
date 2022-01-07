@@ -1,9 +1,6 @@
 import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
-import Loading from "../../components/Loading";
-import MapArea from "../../components/MapArea";
-import MapTextBox from "../../components/MapTextBox";
-import NotFound from "../../components/NotFound";
+import { Loading, MapArea, MapTextBox, NotFound } from "components";
 import CompanyContext from "../../context";
 import styles from "./styles.module.scss";
 

@@ -1,5 +1,6 @@
 import React from "react";
-import styles from "./styles.module.scss";
+import styled from "styled-components";
+import { Wrapper, ReturnArrowStyle } from "./NotFound.styles";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -7,27 +8,25 @@ import {
   faArrowCircleLeft,
 } from "@fortawesome/free-solid-svg-icons";
 import Typography from "@mui/material/Typography";
-
 import { Link } from "react-router-dom";
+
+const ReturnArrow = styled(FontAwesomeIcon)`
+  ${ReturnArrowStyle}
+`;
 
 const NotFound: React.FC = () => {
   return (
-    <div className={styles.wrapper}>
+    <Wrapper>
       <Link to="/">
-        <FontAwesomeIcon
-          icon={faArrowCircleLeft}
-          size="3x"
-          className={styles.icon}
-          color="white"
-        />
+        <ReturnArrow icon={faArrowCircleLeft} size="3x" color="white" />
       </Link>
 
       <FontAwesomeIcon icon={faWindowClose} size="5x" color="white" />
       <Typography variant="h1" color="secondary">
         Endereço não encontrado
       </Typography>
-    </div>
+    </Wrapper>
   );
 };
 
-export default NotFound;
+export { NotFound };

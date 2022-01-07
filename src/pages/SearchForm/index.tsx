@@ -1,6 +1,5 @@
 import React from "react";
-import Results from "../../components/Results";
-import Search from "../../components/Search";
+import { Results, Search } from "components";
 import styles from "./styles.module.scss";
 
 const SearchForm: React.FC = () => {
