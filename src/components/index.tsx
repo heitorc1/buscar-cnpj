@@ -6,6 +6,7 @@ import { MapTextBox } from "./MapTextBox/MapTextBox";
 import { NotFound } from "./NotFound/NotFound";
 import { Results } from "./Results/Results";
 import { Search } from "./Search/Search";
+import { Notification } from "./Notification/Notification";
 
 export {
   Card,
@@ -16,4 +17,5 @@ export {
   NotFound,
   Results,
   Search,
+  Notification,
 };

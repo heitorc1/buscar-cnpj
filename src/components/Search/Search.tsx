@@ -1,5 +1,4 @@
 import React from "react";
-import styles from "./styles.module.scss";
 import { Wrapper, Title, TitleText, IconStyle } from "./Search.styles";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

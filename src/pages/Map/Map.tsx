@@ -1,8 +1,8 @@
 import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import { Loading, MapArea, MapTextBox, NotFound } from "components";
-import CompanyContext from "../../context";
-import styles from "./styles.module.scss";
+import CompanyContext from "context";
+import { Box } from "./Map.styles";
 
 const Map: React.FC = () => {
   const { state } = useContext(CompanyContext);
@@ -44,18 +44,16 @@ const Map: React.FC = () => {
       {!loaded ? (
         <Loading />
       ) : latitude || longitude ? (
-        <div className={styles.wrapper}>
-          <div className={styles.area}>
-            <MapArea latitude={latitude} longitude={longitude} />
-          </div>
-          <div className={styles.box}>
+        <>
+          <MapArea latitude={latitude} longitude={longitude} />
+          <Box>
             <MapTextBox
               razao_social={state.nome}
               cnpj={state.cnpj}
               logradouro={state.logradouro}
             />
-          </div>
-        </div>
+          </Box>
+        </>
       ) : (
         <NotFound />
       )}
@@ -63,4 +61,4 @@ const Map: React.FC = () => {
   );
 };
 
-export default Map;
+export { Map };

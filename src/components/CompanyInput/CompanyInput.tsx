@@ -3,28 +3,17 @@ import { Wrapper } from "./CompanyInput.styles";
 import NumberFormat from "react-number-format";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-import Alert from "@mui/material/Alert";
-import Snackbar from "@mui/material/Snackbar";
+import CompanyContext from "context";
+import { handleLocalStorage } from "../../services/saveToLocalStorage";
+import { Notification } from "components";
 
-import CompanyContext from "../../context";
+import { searchCNPJ } from "services/Api";
 
-import jsonp from "jsonp";
-import validarCNPJ from "../../services/validarCNPJ";
+import validarCNPJ from "util/validarCNPJ";
 
 type CustomProps = {
   onChange: (event: { target: { name: string; value: string } }) => void;
   name: string;
-};
-
-type CompanyType = {
-  nome: string;
-  uf: string;
-  cnpj: string;
-  bairro: string;
-  logradouro: string;
-  numero: string;
-  cep: string;
-  municipio: string;
 };
 
 const NumberFormatCustom = React.forwardRef<NumberFormat, CustomProps>(
@@ -58,19 +47,7 @@ const CompanyInput: React.FC = () => {
     setOpen(false);
   };
 
-  const handleLocalStorage = (item: CompanyType) => {
-    let companies = [];
-    if (!localStorage.getItem("company")) {
-      companies.push(item);
-      localStorage.setItem("company", JSON.stringify(companies));
-    } else {
-      companies = JSON.parse(localStorage.getItem("company") || "{}");
-      companies.push(item);
-      localStorage.setItem("company", JSON.stringify(companies));
-    }
-  };
-
-  async function handleClick() {
+  function handleClick() {
     const validate = validarCNPJ(cnpj);
     if (!validate) {
       // CNPJ incorreto
@@ -78,20 +55,31 @@ const CompanyInput: React.FC = () => {
     } else {
       // CNPJ existe
       setOpen(false);
-      jsonp("https://www.receitaws.com.br/v1/cnpj/" + cnpj, (err, data) => {
-        if (err) {
-          console.error(err.message);
-        } else {
-          setState(data);
-          handleLocalStorage(data);
-        }
+      searchCNPJ(cnpj).then((res) => {
+        console.log(res);
+        handleLocalStorage(res);
+        setState({
+          nome: res.nome,
+          cnpj: res.cnpj,
+          logradouro: res.logradouro,
+          complemento: res.compĺemento,
+          bairro: res.bairro,
+          cep: res.cep,
+          municipio: res.municipio,
+          uf: res.uf,
+        });
       });
     }
   }
 
   return (
     <Wrapper>
-      <Snackbar
+      <Notification
+        state={open}
+        severity="error"
+        message="CNPJ incorreto! Por favor, digite novamente."
+      />
+      {/* <Snackbar
         open={open}
         autoHideDuration={6000}
         onClick={handleClose}
@@ -101,7 +89,7 @@ const CompanyInput: React.FC = () => {
         <Alert severity="error">
           CNPJ incorreto! Por favor, digite novamente.
         </Alert>
-      </Snackbar>
+      </Snackbar> */}
 
       <TextField
         id="company"

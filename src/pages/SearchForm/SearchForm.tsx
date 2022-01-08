@@ -1,13 +1,13 @@
 import React from "react";
 import { Results, Search } from "components";
-import styles from "./styles.module.scss";
+import { Wrapper } from "./SearchForm.styles";
 
 const SearchForm: React.FC = () => {
   return (
-    <div className={styles.wrapper}>
+    <Wrapper>
       <Search />
       <Results />
-    </div>
+    </Wrapper>
   );
 };
 

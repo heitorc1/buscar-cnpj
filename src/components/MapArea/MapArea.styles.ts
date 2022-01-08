@@ -7,4 +7,8 @@ const Wrapper = css`
   height: 100vh;
 `;
 
-export { Wrapper };
+const Map = styled(MapContainer)`
+  ${Wrapper}
+`;
+
+export { Map };

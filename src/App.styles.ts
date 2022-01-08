@@ -1,4 +1,6 @@
-.app {
+import styled from "styled-components";
+
+const Wrapper = styled.div`
   background: rgb(56, 134, 105);
   background: linear-gradient(
     90deg,
@@ -8,4 +10,6 @@
 
   height: 100vh;
   font-size: 20px;
-}
+`;
+
+export { Wrapper };

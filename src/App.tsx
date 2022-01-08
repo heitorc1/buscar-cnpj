@@ -1,25 +1,25 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-import styles from "./App.module.scss";
-import SearchForm from "./pages/SearchForm";
-import { CompanyContextProvider } from "./context";
+import { Wrapper } from "./App.styles";
+import SearchForm from "pages/SearchForm/SearchForm";
+import { CompanyContextProvider } from "context";
 
 import { ThemeProvider } from "@mui/material/styles";
-import theme from "./assets/theme";
-import Map from "./pages/Map";
+import theme from "assets/theme";
+import { Map } from "pages/Map/Map";
 
 function App() {
   return (
     <ThemeProvider theme={theme}>
       <CompanyContextProvider>
-        <div className={styles.app}>
+        <Wrapper>
           <BrowserRouter>
             <Routes>
               <Route path="/" element={<SearchForm />} />
               <Route path="map" element={<Map />} />
             </Routes>
           </BrowserRouter>
-        </div>
+        </Wrapper>
       </CompanyContextProvider>
     </ThemeProvider>
   );
