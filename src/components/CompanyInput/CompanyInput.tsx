@@ -4,7 +4,7 @@ import NumberFormat from "react-number-format";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import CompanyContext from "context";
-import { handleLocalStorage } from "../../services/saveToLocalStorage";
+import { handleLocalStorage } from "services/saveToLocalStorage";
 import { Notification } from "components";
 
 import { searchCNPJ } from "services/Api";
@@ -42,14 +42,12 @@ const CompanyInput: React.FC = () => {
   const { setState } = useContext(CompanyContext);
   const [open, setOpen] = useState(false);
   const [notFound, setNotFound] = useState(true);
+  const [newCard, setNewCard] = useState(false);
   const [cnpj, setCNPJ] = useState("");
-
-  const handleClose = () => {
-    setOpen(false);
-  };
 
   function handleClick() {
     setOpen(false);
+    setNewCard(false);
     setTimeout(() => {
       const validate = validarCNPJ(cnpj);
       if (!validate) {
@@ -59,7 +57,6 @@ const CompanyInput: React.FC = () => {
         // CNPJ existe
         setNotFound(false);
         searchCNPJ(cnpj).then((res) => {
-          console.log(res);
           handleLocalStorage(res);
           setState({
             nome: res.nome,
@@ -72,6 +69,7 @@ const CompanyInput: React.FC = () => {
             uf: res.uf,
           });
         });
+        setNewCard(true);
       }
       setOpen(true);
     });
@@ -113,7 +111,10 @@ const CompanyInput: React.FC = () => {
             message="CNPJ incorreto! Por favor, digite novamente."
           />
         ) : (
-          <Notification severity="success" message="Empresa adicionada" />
+          <Notification
+            severity="success"
+            message="Empresa adicionada com sucesso!"
+          />
         )
       ) : null}
     </Wrapper>

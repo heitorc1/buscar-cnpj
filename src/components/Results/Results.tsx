@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 import { Wrapper, NotFound } from "./Results.styles";
 import Typography from "@mui/material/Typography";
@@ -13,6 +13,8 @@ import image from "../../assets/images/image.png";
 
 import { Card } from "components";
 
+import CompanyContext from "context";
+
 type CompanyType = {
   nome: string;
   cnpj: string;
@@ -20,12 +22,13 @@ type CompanyType = {
 };
 
 const Results: React.FC = () => {
+  const { state } = useContext(CompanyContext);
   const [companies, setCompanies] = useState([]);
 
   useEffect(() => {
     const storage = JSON.parse(localStorage.getItem("company") || "[]");
     setCompanies(storage.reverse());
-  }, []);
+  }, [state]);
 
   return (
     <>

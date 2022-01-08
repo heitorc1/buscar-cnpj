@@ -20,9 +20,8 @@ const Notification: React.FC<PropsType> = ({
   return (
     <Snackbar
       open={open}
-      autoHideDuration={3000}
+      autoHideDuration={5000}
       onClose={handleClose}
-      onClick={handleClose}
       anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
     >
       <Alert severity={severity}>{message}</Alert>
