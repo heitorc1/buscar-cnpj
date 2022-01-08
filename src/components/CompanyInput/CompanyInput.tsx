@@ -41,6 +41,7 @@ const NumberFormatCustom = React.forwardRef<NumberFormat, CustomProps>(
 const CompanyInput: React.FC = () => {
   const { setState } = useContext(CompanyContext);
   const [open, setOpen] = useState(false);
+  const [notFound, setNotFound] = useState(true);
   const [cnpj, setCNPJ] = useState("");
 
   const handleClose = () => {
@@ -48,49 +49,36 @@ const CompanyInput: React.FC = () => {
   };
 
   function handleClick() {
-    const validate = validarCNPJ(cnpj);
-    if (!validate) {
-      // CNPJ incorreto
-      setOpen(true);
-    } else {
-      // CNPJ existe
-      setOpen(false);
-      searchCNPJ(cnpj).then((res) => {
-        console.log(res);
-        handleLocalStorage(res);
-        setState({
-          nome: res.nome,
-          cnpj: res.cnpj,
-          logradouro: res.logradouro,
-          complemento: res.compĺemento,
-          bairro: res.bairro,
-          cep: res.cep,
-          municipio: res.municipio,
-          uf: res.uf,
+    setOpen(false);
+    setTimeout(() => {
+      const validate = validarCNPJ(cnpj);
+      if (!validate) {
+        // CNPJ incorreto
+        setNotFound(true);
+      } else {
+        // CNPJ existe
+        setNotFound(false);
+        searchCNPJ(cnpj).then((res) => {
+          console.log(res);
+          handleLocalStorage(res);
+          setState({
+            nome: res.nome,
+            cnpj: res.cnpj,
+            logradouro: res.logradouro,
+            complemento: res.compĺemento,
+            bairro: res.bairro,
+            cep: res.cep,
+            municipio: res.municipio,
+            uf: res.uf,
+          });
         });
-      });
-    }
+      }
+      setOpen(true);
+    });
   }
 
   return (
     <Wrapper>
-      <Notification
-        state={open}
-        severity="error"
-        message="CNPJ incorreto! Por favor, digite novamente."
-      />
-      {/* <Snackbar
-        open={open}
-        autoHideDuration={6000}
-        onClick={handleClose}
-        onClose={handleClose}
-        anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
-      >
-        <Alert severity="error">
-          CNPJ incorreto! Por favor, digite novamente.
-        </Alert>
-      </Snackbar> */}
-
       <TextField
         id="company"
         label="CNPJ"
@@ -117,6 +105,17 @@ const CompanyInput: React.FC = () => {
       >
         Localizar
       </Button>
+
+      {open ? (
+        notFound ? (
+          <Notification
+            severity="error"
+            message="CNPJ incorreto! Por favor, digite novamente."
+          />
+        ) : (
+          <Notification severity="success" message="Empresa adicionada" />
+        )
+      ) : null}
     </Wrapper>
   );
 };

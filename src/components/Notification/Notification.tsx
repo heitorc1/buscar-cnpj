@@ -5,15 +5,13 @@ import Snackbar from "@mui/material/Snackbar";
 type PropsType = {
   severity: AlertColor;
   message: string;
-  state: boolean;
 };
 
 const Notification: React.FC<PropsType> = ({
   severity,
   message,
-  state,
 }: PropsType) => {
-  const [open, setOpen] = useState(state);
+  const [open, setOpen] = useState(true);
 
   const handleClose = () => {
     setOpen(false);
@@ -22,9 +20,9 @@ const Notification: React.FC<PropsType> = ({
   return (
     <Snackbar
       open={open}
-      autoHideDuration={6000}
-      onClick={handleClose}
+      autoHideDuration={3000}
       onClose={handleClose}
+      onClick={handleClose}
       anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
     >
       <Alert severity={severity}>{message}</Alert>
