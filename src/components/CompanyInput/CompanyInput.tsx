@@ -42,12 +42,10 @@ const CompanyInput: React.FC = () => {
   const { setState } = useContext(CompanyContext);
   const [open, setOpen] = useState(false);
   const [notFound, setNotFound] = useState(true);
-  const [newCard, setNewCard] = useState(false);
   const [cnpj, setCNPJ] = useState("");
 
   function handleClick() {
     setOpen(false);
-    setNewCard(false);
     setTimeout(() => {
       const validate = validarCNPJ(cnpj);
       if (!validate) {
@@ -69,7 +67,6 @@ const CompanyInput: React.FC = () => {
             uf: res.uf,
           });
         });
-        setNewCard(true);
       }
       setOpen(true);
     });
